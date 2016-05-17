@@ -1,6 +1,10 @@
 library(RMySQL)
 library(randomNames)
 library(chron)
+library(RODBC)
+conn <- odbcConnect("MYSQL", uid= "root")
+library(RMySQL)
+mydb = dbConnect(MySQL(), user='root',host='localhost', dbname= 'anchor')
 
 #create some sample users using the randomNames package:
 user_data = data.frame(
@@ -78,23 +82,24 @@ order_fn = function(){
 }
 
 #create database 
-for (purc_i in 1:1000){
+for (purc_i in 1:100000){
   print(purc_i)
   #grab a customer 
   cust = user_data[base::sample(1:NROW(user_data),1),]
   #make a fake order 
   o = order_fn()   
   # choose a date from the past year
-  dt = data.frame(dt =chron(dates=paste(base::sample(dts$dt,1,prob=dts$wght)),
-                  times=paste0(base::sample(6:21,1),":", base::sample(1:59,1),":", base::sample(1:59,1)),
-             format=c('y-m-d','h:m:s')))
+  #dt = data.frame(dt =chron(dates=paste(base::sample(dts$dt,1,prob=dts$wght)),
+  #                times=paste0(base::sample(6:21,1),":", base::sample(1:59,1),":", base::sample(1:59,1)),
+  #           format=c('y-m-d','h:m:s')))
+  dt = data.frame(dt =paste(base::sample(dts$dt,1,prob=dts$wght)))
   #output the purchase 
   out = cbind(dt = matrix(gsub("\\(","",gsub("\\)","",paste(dt[[1]]))),NROW(o)), cust, o,row.names = NULL)
-  if (purc_i == 1) {
+ # if (purc_i == 1) {
     #write the order to a simple database:
-    dbWriteTable(mydb, "cust_purchases",out, overwrite=T,row.names=F)
-  } else {dbWriteTable(mydb, "cust_purchases",out, append=T,row.names=F)
-  }
+#    dbWriteTable(mydb, "cust_purchases",out, overwrite=T,row.names=F)
+ # } else {dbWriteTable(mydb, "cust_purchases",out, append=T,row.names=F)
+#  }
 }
 #check the data: 
 testthis = sqlQuery(conn, "select * from anchor.cust_purchases limit 1000")
