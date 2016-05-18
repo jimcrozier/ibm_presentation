@@ -13,6 +13,13 @@ sc <- sparkR.init(spark_link)
 sqlContext <- sparkRSQL.init(sc)
 
 ddf2 <- createDataFrame(sqlContext, testthis)
+write.parquet(ddf2,"hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis")
+
+write.parquet(ddf2,"hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis2/1")
+write.parquet(ddf2,"hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis2/2")
+
+write.parquet(ddf2,"hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis2/4")
+
 head(ddf2)
 local_df <- ddf2 %>%
   groupBy(ddf2$customer_id) %>%

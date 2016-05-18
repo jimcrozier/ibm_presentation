@@ -2,7 +2,7 @@ library(RMySQL)
 library(randomNames)
 library(chron)
 library(RODBC)
-conn <- odbcConnect("MYSQL", uid= "root")
+conn <- odbcConnect("mysql", uid= "root")
 library(RMySQL)
 mydb = dbConnect(MySQL(), user='root',host='localhost', dbname= 'anchor')
 
@@ -14,7 +14,7 @@ user_data = data.frame(
 )
 
 #read in the products: 
-products = read.csv("~/cust_db/price_list.csv")
+products = read.csv("./data/price_list.csv")
 
 #weight smaller items higher:
 #this could be better:
@@ -82,7 +82,7 @@ order_fn = function(){
 }
 
 #create database 
-for (purc_i in 1:100000){
+for (purc_i in 1:1000){
   print(purc_i)
   #grab a customer 
   cust = user_data[base::sample(1:NROW(user_data),1),]
@@ -95,11 +95,26 @@ for (purc_i in 1:100000){
   dt = data.frame(dt =paste(base::sample(dts$dt,1,prob=dts$wght)))
   #output the purchase 
   out = cbind(dt = matrix(gsub("\\(","",gsub("\\)","",paste(dt[[1]]))),NROW(o)), cust, o,row.names = NULL)
- # if (purc_i == 1) {
+  if (purc_i == 1) {
     #write the order to a simple database:
-#    dbWriteTable(mydb, "cust_purchases",out, overwrite=T,row.names=F)
- # } else {dbWriteTable(mydb, "cust_purchases",out, append=T,row.names=F)
-#  }
+    dbWriteTable(mydb, "cust_purchases",out, overwrite=T,row.names=F)
+ } else {dbWriteTable(mydb, "cust_purchases",out, append=T,row.names=F)
+ }
 }
-#check the data: 
-testthis = sqlQuery(conn, "select * from anchor.cust_purchases limit 1000")
+
+spark_link <- system('cat /root/spark-ec2/cluster-url', intern=TRUE)
+.libPaths(c(.libPaths(), '/root/spark/R/lib'))
+Sys.setenv(SPARK_HOME = '/root/spark')
+Sys.setenv(PATH = paste(Sys.getenv(c('PATH')), '/root/spark/bin', sep=':'))
+library(SparkR)
+sc <- sparkR.init(spark_link)
+sqlContext <- sparkRSQL.init(sc)
+
+for (i in 1:2){
+  print(i)
+  if(i==1) system("/root/ephemeral-hdfs/bin/hadoop fs -rmr hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis")
+  testthis = sqlQuery(conn, "select * from anchor.cust_purchases limit 5000")
+  ddf2 <- createDataFrame(sqlContext, testthis)
+  write.parquet(ddf2,paste0("hdfs://ec2-54-92-154-38.compute-1.amazonaws.com:9000/user/hive/warehouse/testthis/",i))
+}
+  
