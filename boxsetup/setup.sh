@@ -81,8 +81,8 @@ sudo tar -zxf zeppelin-0.5.6-incubating-bin-all.tgz
 
 
 export HADOOP_HOME="/root/ephemeral-hdfs"
-export ZEPPELIN_PORT=8082
-bin/zeppelin-daemon.sh start
+export ZEPPELIN_PORT=8888
+/root/ibm_presentation/boxsetup/zeppelin-0.5.6-incubating-bin-all/bin/zeppelin-daemon.sh start
 
 #./hadoop fs -mkdir hdfs://ec2-54-235-15-71.compute-1.amazonaws.com:9000/data
 #./hadoop fs -put /root/data/bank-full.csv hdfs://ec2-54-235-15-71.compute-1.amazonaws.com:9000/data/bank-full.csv
