@@ -2,15 +2,22 @@
 
 To run download spark http://spark.apache.org/downloads.html pre-compiled, navigate to /ec2 folder, and generate spark cluster with 
 
-export AWS_ACCESS_KEY_ID=AKIA.... \n
+export AWS_ACCESS_KEY_ID=AKIA.... 
+
 export AWS_SECRET_ACCESS_KEY=xtp... n\
 
-./spark-ec2 \ \n
+./spark-ec2 \
+
 --key-pair=spark \
+
 --identity-file=/.../.ssh/spark.pem \
+
 --region=us-east-1 \
+
 -s 3 \
+
 --instance-type=m3.xlarge \
+
 launch test19
 
 where the access keys and pem are downloaded from you AWS account. 
