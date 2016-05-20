@@ -15,7 +15,7 @@ export AWS_SECRET_ACCESS_KEY=xtp...
 
 --key-pair=spark \
 
---identity-file=/.../.ssh/spark.pem \
+--identity-file=/WHERE_YOUR_PEM_IS_LOCATED/spark.pem \
 
 --region=us-east-1 \
 
@@ -28,7 +28,7 @@ launch test19
 where the access keys and pem are downloaded from your AWS account (notice this will cost you money, also notice that you can choose any instance type that you want, or even run spot instances). 
 
 After the cluster is set up login to the box
-./spark-ec2 -k spark -i /Users/robertcrozier/Documents/.ssh/spark.pem --region=us-east-1 login test19
+./spark-ec2 -k spark -i /WHERE_YOUR_PEM_IS_LOCATED/spark.pem --region=us-east-1 login test19
 
 clone this repo
 
@@ -40,7 +40,7 @@ sh setup.sh
 this will install all of the needed programs, and spaw mongo (leave this instance open).
 
 After the programs are installed, ssh into the box with another terminal:
-./spark-ec2 -k spark -i /Users/robertcrozier/Documents/.ssh/spark.pem --region=us-east-1 login test19
+./spark-ec2 -k spark -i /WHERE_YOUR_PEM_IS_LOCATED/spark.pem --region=us-east-1 login test19
 
 cd /ibm_presentation/ui/bin 
 node www
