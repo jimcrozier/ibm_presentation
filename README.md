@@ -1,6 +1,6 @@
 # ibm_presentation
 
-This repo is for deploying a spark cluster from the spark distro (with R, Rstudio), and adding in mongo, mysql, zeppelin, nodejs, hive and many of the bindings that are needed tying all of these tools together. It also includes adminlte (https://github.com/RamEduard/admin-lte-express) with some ajax bindings for interacting with the mysql database. 
+This repo is for deploying a spark cluster from the spark distro (with R, Rstudio), and adding in mongo, mysql, zeppelin, nodejs, hive and many of the bindings that are needed for tying all of these tools together. It also includes adminlte (https://github.com/RamEduard/admin-lte-express) with some ajax bindings for interacting with the mysql database. 
 
 Code takes about 30 minutes to deploy and setup. 
 
