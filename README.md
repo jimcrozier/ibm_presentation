@@ -58,7 +58,7 @@ passwd jim
 
 (you can change the automatically generated name in the shell script, or just create a new user with add user).
 
-Navigate to the the IP address port :8787 for RStudio server, and open the R code make_data in the R folder. Run this code to generate the data in the anchor database (it will show up in the main dashboard graph). To generate HDFS make sure to change the IP to match your instance's IP (port :9000 for hdfs). 
+Navigate to the the IP address port :8787 for RStudio server (log in with the username/pw that you created above), and open the R code make_data.R in the R folder. Run this code to generate the data in the anchor database (it will show up in the main dashboard graph). To generate HDFS make sure to change the IP to match your instance's IP (port :9000 for hdfs). 
 
 Naviage to the IP address port :8888 for Zeppelin, and play with the code in the note.json notebook for interacting with the data that you created in the R make_data file. 
 
