@@ -20,3 +20,21 @@ After the cluster is set up login to the box
 
 clone this repo
 
+https://github.com/jimcrozier/ibm_presentation.git
+
+cd /ibm_presentation/boxsetup
+sh setup.sh 
+
+this will install all of the needed programs, and spaw mongo (leave this instance open).
+
+After the programs are installed, ssh into the box with another terminal:
+./spark-ec2 -k spark -i /Users/robertcrozier/Documents/.ssh/spark.pem --region=us-east-1 login test19
+
+cd /ibm_presentation/ui/bin 
+node www
+
+this will kick off your ui, login with admin/admin 
+
+
+see licenses for all of the open source tools and do not use outside of their instructions. 
+
