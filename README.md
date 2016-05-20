@@ -2,10 +2,10 @@
 
 To run download spark http://spark.apache.org/downloads.html pre-compiled, navigate to /ec2 folder, and generate spark cluster with 
 
-export AWS_ACCESS_KEY_ID=AKIA....
-export AWS_SECRET_ACCESS_KEY=xtp...
+export AWS_ACCESS_KEY_ID=AKIA.... \n
+export AWS_SECRET_ACCESS_KEY=xtp... n\
 
-./spark-ec2 \
+./spark-ec2 \ \n
 --key-pair=spark \
 --identity-file=/.../.ssh/spark.pem \
 --region=us-east-1 \
