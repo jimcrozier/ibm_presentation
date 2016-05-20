@@ -37,11 +37,19 @@ After the programs are installed, ssh into the box with another terminal:
 ```
 ./spark-ec2 -k spark -i /WHERE_YOUR_PEM_IS_LOCATED/spark.pem --region=us-east-1 login test19
 ```
-and run the following:
+
+You can find your IP address by running 
+```
+cat /root/spark-ec2/cluster-url
+```
+(disregard the spark, and the 7000 port, you only need the IP address).
+
+To deploy the UI run the following:
 ```
 cd /ibm_presentation/ui/bin 
 node www
 ```
+
 You will have to log into your AWS account and open the ports for 3000 (for the app), 27017 (for mongo), and 8888 (for zeppelin). See http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html for instructions on how to open new ports. 
 
 
