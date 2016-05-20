@@ -41,6 +41,9 @@ and run the following:
 cd /ibm_presentation/ui/bin 
 node www
 ```
+You will have to log into your AWS account and open the ports for 3000 (for the app), 27017 (for mongo), and 8888 (for zeppelin). See http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html for instructions on how to open new ports. 
+
+
 this will kick off your ui, login with admin/admin 
 
 Notice that some of the bindings for the ec2 instances are absolute. Make sure that they are pointing at your instance IP address. 
