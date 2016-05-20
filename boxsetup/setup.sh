@@ -48,7 +48,7 @@ $HADOOP_HOME/bin/hadoop fs -chmod g+w /user/hive/warehouse
 #ec2-54-196-26-187.compute-1.amazonaws.com
 
 #R /ODBC stuff 
-echo "install.packages(c('rjson',Rcpp',magrittr','DBI','RODBC','shiny','RMySQL','randomNames','rmongodb'), repos='http://cran.us.r-project.org', lib = '/usr/lib64/R/library',dep=TRUE)" > tryinstall.R
+echo "install.packages(c('rjson','Rcpp','magrittr','DBI','RODBC','shiny','RMySQL','randomNames','rmongodb'), repos='http://cran.us.r-project.org', lib = '/usr/lib64/R/library',dep=TRUE)" > tryinstall.R
 sudo R CMD BATCH tryinstall.R 
 
 #sql code 
