@@ -14,7 +14,7 @@ user_data = data.frame(
 )
 
 #read in the products: 
-products = read.csv("./data/price_list.csv")
+products = read.csv("/root/ibm_presentation/R/data/price_list.csv")
 
 #weight smaller items higher:
 #this could be better:
