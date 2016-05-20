@@ -23,10 +23,11 @@ After the cluster is set up login to the box
 ```
 ./spark-ec2 -k spark -i /WHERE_YOUR_PEM_IS_LOCATED/spark.pem --region=us-east-1 login test19
 ```
-clone this repo
+once you are ssh'ed in the box, clone this repo onto that box:
 
-https://github.com/jimcrozier/ibm_presentation.git
+
 ```
+git clone https://github.com/jimcrozier/ibm_presentation.git
 cd /ibm_presentation/boxsetup
 sh setup.sh 
 ```
