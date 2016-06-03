@@ -1,0 +1,85 @@
+{{#extend 'styles'}}
+  <style>
+    .error {
+      color: red;
+    }
+    .success {
+      color:green;
+    }
+  </style>
+{{/extend}}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Show Product
+    <small>Show product info</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="{{{url 'dashboard.v1'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="{{{url 'product.list'}}}">List</a></li>
+    <li class="active">Show Product</li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-sm-6 col-md-5">
+      {{#if message}}
+        {{{message}}}
+      {{/if}}
+      
+      <!-- Widget: product widget style 1 -->
+      <div class="box box-widget widget-product-2">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-product-header bg-primary">
+          <div class="widget-product-image">
+            <img class="img-circle" src="/admin/admin-lte/img/default-50x50.gif" alt="{{crud_product.displayName}}">
+          </div>
+          <!-- /.widget-product-image -->
+          <h4 class="widget-product-productname">{{crud_product.productname}}</h4>
+          <b>&nbsp;&nbsp;</b>
+          <a href="/crud/product/{{crud_product.id}}/edit" class="btn btn-sm btn-success">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Edit
+          </a>
+          <a href="#" data-href="/crud/product/{{crud_product.id}}?_method=delete" class="btn btn-sm btn-danger delete">
+            <i class="glyphicon glyphicon-remove"></i>
+            Delete
+          </a>
+        </div>
+        <div class="box-body">
+          <p><b>Display Name:</b> {{crud_product.displayName}}</p>
+          <p><b>Emails:</b>
+            <ul>
+              {{#each crud_product.emails}}
+                <li>{{this.value}}</li>
+              {{/each}}
+            </ul>
+          </p>
+        </div>
+      </div>
+      <!-- /.widget-product -->    
+    </div>
+    <!-- /.col-md-6 -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.section -->
+{{#extend 'scripts'}}
+  <script>
+    (function($) {
+      // Delete product button
+      $('.btn-danger.delete').click(function(event) {
+        event.preventDefault();
+
+        var uri = $(this).attr('data-href');
+        
+        if (confirm('¿Desea eliminar el usuario?')) {
+          $.post(uri, function(response) {
+            window.location.href = '/crud/products';
+          });
+        }
+      });
+    })(jQuery)
+  </script>
+{{/extend}}

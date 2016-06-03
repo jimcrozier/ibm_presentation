@@ -27,6 +27,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview {{{activeRoutes 'dashboard.index,dashboard.v1,dashboard.v2'}}}">
                            <a href="#">
+                            <!-- 
                                            <i class="fa fa-anchor"></i> <span>Analysis</span> <i class="a fa-angle-left pull-right"></i>
                                                          </a>
               <ul class="treeview-menu">
@@ -39,6 +40,8 @@
 <li class="{{{activeRoute 'dashboard.v2'}}}">                                                                                                  <a target = "_blank" href="http://ec2-54-92-154-38.compute-1.amazonaws.com:8080"><i class="fa fa-circle-o"></i> Cluster Health</a>
                                                                                                                   </li>
                                                                                                                                 </ul>
+
+                                                                                                                                -->
                                                                                                                                             </li>
                                                                                                                                          
 <li class="treeview {{{activeRoutes 'dashboard.index,dashboard.v1,dashboard.v2'}}}">                                                                                                                                      
@@ -76,6 +79,11 @@
                 </li>
               </ul>
             </li>}}
+
+
+            <!--
+
+
             <li class="{{{activeRoute 'widgets.index'}}}">
               <a href="{{{url 'widgets.index'}}}">
                 <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">Hot</small>
@@ -172,6 +180,11 @@
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
+
+
+            -->
+
+
             <li class="treeview  class="{{{activeRoutes 'examples.invoice,user.profile,user.login,user.register,user.lockscreen'}}}"">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Examples</span>
@@ -209,6 +222,48 @@
                 </li>
               </ul>
             </li>
+            <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
+              <a href="#">
+                <i class="fa fa-users"></i> <span>CRUD Product</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="{{{activeRoute 'product.new'}}}">
+                  <a href="{{{url 'product.new'}}}"><i class="fa fa-circle-o"></i> New Product</a>
+                </li>
+                <li class="{{{activeRoute 'product.list'}}}">
+                  <a href="{{{url 'product.list'}}}"><i class="fa fa-circle-o"></i> List Product</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
+              <a href="#">
+                <i class="fa fa-users"></i> <span>Shop</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="{{{activeRoute 'product.new'}}}">
+                  <a href="{{{url 'shop.new'}}}"><i class="fa fa-circle-o"></i> New Product</a>
+                </li>
+                <li class="{{{activeRoute 'product.list'}}}">
+                  <a href="{{{url 'shop.list'}}}"><i class="fa fa-circle-o"></i> List Product</a>
+                </li>
+              </ul>
+            </li>
+
+             <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
+              <a href="#">
+                <i class="fa fa-users"></i> <span>Cart</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="{{{activeRoute 'cart.list'}}}">
+                  <a href="{{{url 'cart.list'}}}"><i class="fa fa-circle-o"></i> Show Cart</a>
+                </li>
+              </ul>
+            </li>
+
             <li>
               <a href="{{{url 'documentation.index'}}}"><i class="fa fa-book"></i> <span>Documentation</span></a>
             </li>
