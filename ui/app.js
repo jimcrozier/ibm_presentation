@@ -144,6 +144,38 @@ var Handlebars = exphbs.create({
       blocks[name] = [];
       return val;
     },
+    multreturn: function(one,two) {
+      // TODO
+      out = one * two 
+      return Math.round(out * 100) / 100; 
+    }, 
+    revtotal: function(data) {
+      // TODO
+     var sum = 0;
+     for(var i=0; i< data.length; i++) {
+     sum += data[i].quantity * data[i].productprice;
+     }
+     return Math.round(sum * 100) / 100; 
+    }, 
+    revtaxtotal: function(data) {
+      // TODO
+     var sum = 0;
+     for(var i=0; i< data.length; i++) {
+     sum += data[i].quantity * data[i].productprice;
+     }
+     sum = sum*0.08; 
+     return Math.round(sum * 100) / 100; 
+    }, 
+    revplustaxtotal: function(data) {
+      // TODO
+     var sum = 0;
+     for(var i=0; i< data.length; i++) {
+     sum += data[i].quantity * data[i].productprice;
+     }
+     tax = sum*0.08; 
+     sum = sum + tax ; 
+     return Math.round(sum * 100) / 100; 
+    }, 
     extend: function(name, context) {
       var block = blocks[name];
       if (!block) {

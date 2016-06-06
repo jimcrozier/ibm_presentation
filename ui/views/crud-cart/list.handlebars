@@ -11,7 +11,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    List Products
+    Shopping Cart
     <small>All products listed</small>
   </h1>
   <ol class="breadcrumb">
@@ -21,6 +21,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
+
   <div class="row">
     <div class="col-xs-12">
       {{#if message}}
@@ -28,15 +29,8 @@
       {{/if}}
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">All products</h3>
+          <h3 class="box-title">Cart</h3>
           <div class="box-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
-
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
-              </div>
-            </div>
           </div>
         </div>
         <!-- /.box-header -->
@@ -48,12 +42,11 @@
               <th>Display Name</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>Item Total</th>
               <th>Actions</th>
             </tr>
-            {{#each crud_product }}
-            
+            {{#each crud_cart }}
               <tr>
-              <form action="{{{url 'cart.create'}}}" method="post"> 
                 <td>
                   <a href="/crud/product/{{this.id}}">
                     {{this.id}}
@@ -66,13 +59,14 @@
                 </td>
                 <td>{{this.displayName}}</td>
                  <td>{{this.productprice}}</td>
-                <td>          
-                <input type="text" size = "3" class="form-control" name="quanity" placeholder="#" required/>
-                </td>
+                 <td>{{this.quantity}}</td>
+                 <td>{{multreturn this.quantity this.productprice}}</td>
                 <td>
-                <button type="submit" name = "id" value = {{this.id}} class="btn-link">Add to Cart</button>
+                 <a href="#" class="btn btn-xs btn-danger" data-href="/crud/cart/{{this.id}}?_method=delete">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                  </a>
                 </td>
-                 </form>
               </tr>
             {{/each}}
           </table>
@@ -85,6 +79,16 @@
   <!-- /.row -->
 </section>
 <!-- /.section -->
+
+      <div class="box"  align="right">
+          <h3 class="box-title" > 
+          Supply Costs:{{ revtotal crud_cart }}</h3 >
+                    <h3 class="box-title" > 
+          Estimated Tax:  {{ revtaxtotal crud_cart }}</h3 >
+          <h3 class="box-title" > 
+          Estimated Total:  {{ revplustaxtotal crud_cart }}</h3>
+          </div>
+
 {{#extend 'scripts'}}
   <script>
     (function($) {
@@ -94,9 +98,9 @@
 
         var uri = $(this).attr('data-href');
         
-        if (confirm('¿Desea eliminar el usuario?')) {
+        if (confirm('Delete this item?')) {
           $.post(uri, function(response) {
-            window.location.href = '/crud/cart';
+            window.location.href = '/crud/carts';
           });
         }
       });

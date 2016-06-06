@@ -116,10 +116,10 @@ exports.findByProductname = function(productname, cb) {
 // Carts Model
 var cartsSchema = new Schema({
   id: Number,
-  cartname: String,
-  cartprice: Number,
+  productname: String,
+  productprice: Number,
   displayName: String,
-  cartsku: String
+  quantity: Number
 }, {collection:'carts'});
 
 var Cart = exports.Cart = mongoose.model('Cart', cartsSchema);
@@ -130,13 +130,16 @@ exports.getCarts = function(cb) {
   });
 };
 
+
+
+
 var carts = exports.carts = [
   new Cart({ 
     id: 1, 
-    item: 'hammer', 
-    cartprice: '19.99', 
+    productname: 'hammer', 
+    productprice: '19.99', 
     displayName: 'Hammer', 
-    quantity: '123456-1234'
+    quantity: 2
   })]
 
 // add carts from collection mongo

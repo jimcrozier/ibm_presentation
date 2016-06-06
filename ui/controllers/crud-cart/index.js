@@ -29,6 +29,14 @@ exports.list = function(request, response) {
   });
 };
 
+
+
+exports.sumrev = function(request, response) {
+  db.Cart.find().exec(function(err, results) {
+  console.log("trying");
+  });
+};
+
 exports.new = function(request, response) {
   response.render("crud-cart/new", {
     title: 'New Cart'
@@ -40,19 +48,21 @@ exports.create = function(request, response) {
   
   //var id = 17697;
   var id = request.body.id;
-  console.log(request.body);
+  var qnty = request.body.quanity;
+  console.log(qnty);
   //var id = "17697";
   
   if (!id) return next();
   db.Product.findOne({id:id}, function(err, cart) {
     
   if (cart) {
+    console.log(qnty);
     var Cart = new db.Cart({
-      id: Math.floor(100000 + Math.random() * 900000).toString().substring(0, 4),
-      cartname: cart.productame,
-      cartprice: cart.productprice,
+      id: cart.id,
+      productname: cart.productname,
+      productprice: cart.productprice,
       displayName: cart.displayName,
-      cartsku: cart.productsku
+      quantity: qnty
     });
   
     // Save 
@@ -87,18 +97,19 @@ exports.edit = function(request, response) {
   });
 };
 
+
 exports.update = function(request, response) {
-  var cart = request.body.cart;
+  var product = request.body.product;
   
-  request.var_name.displayName = cart.displayName;
+  request.var_name.displayName = product.displayName;
 
   db.Cart.findOneAndUpdate({_id: request.var_name._id}, request.var_name, function(err) {
     if (err) {
-      request.session.error = 'Error updating delete cart!';
+      request.session.error = 'Error updating delete product!';
     } else {
-      request.session.success = 'Cart updated succesfuly!';
+      request.session.success = 'Product updated succesfuly!';
     }
-    response.redirect("/crud/cart/" + request.var_name.id + "/edit");
+    response.redirect("/crud/product/" + request.var_name.id + "/edit");
   });
 };
 
@@ -107,10 +118,10 @@ exports.delete = function(request, response) {
 
   db.Cart.findOneAndRemove({_id: request.var_name._id}, function(err) {
     if (err) {
-      request.session.error = 'Error trying delete cart!';
+      request.session.error = 'Error trying delete product!';
       result = err.message
     } else {
-      request.session.success = 'Cart deleted succesfuly!';
+      request.session.success = 'Product deleted succesfuly!';
       result = 'Deleted'
     }
 

@@ -45,14 +45,14 @@
                                                                                                                                             </li>
                                                                                                                                          
 <li class="treeview {{{activeRoutes 'dashboard.index,dashboard.v1,dashboard.v2'}}}">                                                                                                                                      
-             <a href="#">
+ <!--            <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="{{{activeRoute 'dashboard.v1'}}}">
+  -->              <li class="{{{activeRoute 'dashboard.v1'}}}">
                   <a href="{{{url 'dashboard.v1'}}}"><i class="fa fa-circle-o"></i> Dashboard v1</a>
                 </li>
-                <li class="{{{activeRoute 'dashboard.v2'}}}">
+    <!--            <li class="{{{activeRoute 'dashboard.v2'}}}">
                   <a href="{{{url 'dashboard.v2'}}}"><i class="fa fa-circle-o"></i> Dashboard v2</a>
                 </li>
               </ul>
@@ -79,7 +79,7 @@
                 </li>
               </ul>
             </li>}}
-
+-->
 
             <!--
 
@@ -185,16 +185,16 @@
             -->
 
 
-            <li class="treeview  class="{{{activeRoutes 'examples.invoice,user.profile,user.login,user.register,user.lockscreen'}}}"">
+ <!--           <li class="treeview  class="{{{activeRoutes 'examples.invoice,user.profile,user.login,user.register,user.lockscreen'}}}"">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Examples</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="{{{activeRoute 'examples.invoice'}}}">
+      -->          <li class="{{{activeRoute 'examples.invoice'}}}">
                   <a href="{{{url 'examples.invoice'}}}"><i class="fa fa-circle-o"></i> Invoice</a>
                 </li>
-                <li class="{{{activeRoute 'user.profile'}}}">
+      <!--          <li class="{{{activeRoute 'user.profile'}}}">
                   <a href="{{{url 'user.profile'}}}"><i class="fa fa-circle-o"></i> Profile</a>
                 </li>
                 <li class="{{{activeRoute 'user.login'}}}">
@@ -237,33 +237,15 @@
               </ul>
             </li>
 
-            <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Shop</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="{{{activeRoute 'product.new'}}}">
-                  <a href="{{{url 'shop.new'}}}"><i class="fa fa-circle-o"></i> New Product</a>
-                </li>
-                <li class="{{{activeRoute 'product.list'}}}">
-                  <a href="{{{url 'shop.list'}}}"><i class="fa fa-circle-o"></i> List Product</a>
-                </li>
-              </ul>
+    -->        <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
+                              <a href="{{{url 'shop.list'}}}"><i class="fa fa-dollar"></i> Shop</a>
             </li>
 
-             <li class="treeview {{{activeRoutes 'product.list,product.show,product.edit,product.new'}}}">
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Cart</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="{{{activeRoute 'cart.list'}}}">
-                  <a href="{{{url 'cart.list'}}}"><i class="fa fa-circle-o"></i> Show Cart</a>
-                </li>
-              </ul>
-            </li>
 
+            <li class="treeview {{{activeRoutes 'cart.list,cart.show,cart.edit,cart.new'}}}">
+                 <a href="{{{url 'cart.list'}}}"><i class="fa fa-shopping-cart"></i> Cart</a>
+            </li>
+<!--
             <li>
               <a href="{{{url 'documentation.index'}}}"><i class="fa fa-book"></i> <span>Documentation</span></a>
             </li>
@@ -277,6 +259,7 @@
             <li>
               <a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a>
             </li>
+-->
           </ul>
         </section>
         <!-- /.sidebar -->

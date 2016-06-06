@@ -8,6 +8,11 @@
     }
   </style>
 {{/extend}}
+
+{{#*inline "myPartial"}}
+  My Content
+{{/inline}}
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
@@ -21,6 +26,38 @@
 </section>
 <!-- Main content -->
 <section class="content">
+
+
+<p>  
+  <label>Mode:</label>
+  <select name="config[mode]">    
+    <option value=""></option>
+    <option value="live">Live</option>
+    <option value="test" selected="selected">Test</option>    
+  </select>
+</p>  
+<p>  
+  <label>Pair:</label>
+  <select name="config[pair]">      
+    <option value=""></option>      
+    <option value="ltc_btc" selected="selected">LTC / BTC</option>
+    <option value="nmc_btc">NMC / BTC</option>
+  </select>
+</p>
+
+<div class="thistest"></div>
+  <div class="btn-group">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                 Choose Dept
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {{#each crud_cats }}
+              <li><a href="#">{{this}}</a></li>
+            {{/each}}           
+            </ul>
+        </div>
+
   <div class="row">
     <div class="col-xs-12">
       {{#if message}}
@@ -41,7 +78,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
-          <table class="table table-hover">
+          <table class="table table-hover thistable">
             <tr>
               <th>ID</th>
               <th>Productname</th>
@@ -86,20 +123,30 @@
 </section>
 <!-- /.section -->
 {{#extend 'scripts'}}
+
   <script>
     (function($) {
-      // Delete product button
+      // Delete user button
       $('.btn-danger').click(function(event) {
         event.preventDefault();
-
         var uri = $(this).attr('data-href');
         
         if (confirm('¿Desea eliminar el usuario?')) {
           $.post(uri, function(response) {
-            window.location.href = '/crud/cart';
+            window.location.href = '/crud/users';
           });
         }
       });
+
+$('.dropdown-menu li a').click(function() {
+    //alert($(this).text());
+    $('.thistest').text($(this).text());
+});
+
+$('.thistest').text("asdf");
+
     })(jQuery)
   </script>
+
+
 {{/extend}}

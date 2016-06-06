@@ -6,8 +6,6 @@ exports.name = "shop";
 
 exports.engine = "handlebars";
 
-console.log("HEEERRREE");
-
 exports.before = function(request, response, next) {
   var id = request.params._id;
   if (!id) return next();
@@ -23,10 +21,19 @@ exports.index = function(request, response) {
 };
 
 exports.list = function(request, response) {
-  db.Product.find().exec(function(err, results) {
+  db.Product.find().limit( 10 ).exec(function(err, results) {
     response.render("crud-shop/list", {
       title: 'List Products',
       crud_product: results
+    });
+  });
+};
+
+exports.list = function(request, response) {
+  db.Product.distinct("category").exec(function(err, results) {
+    response.render("crud-shop/list", {
+      title: 'List Products',
+      crud_cats: results
     });
   });
 };
