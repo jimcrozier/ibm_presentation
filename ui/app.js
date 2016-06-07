@@ -117,6 +117,14 @@ app.get('/mysqltest', function (req, res) {
                                             }
                                                 );
                                                 });
+
+
+app.get('/box', function(req, res) {
+  var cat = req.query.id; 
+  db.Product.find({category:cat}).limit( 10 ).exec(function(err, results) {
+ res.send(results);
+  });
+});
 // MVC Autoloader
 Autoloader.load(app, {verbose: !module.parent});
 
@@ -148,6 +156,14 @@ var Handlebars = exphbs.create({
       // TODO
       out = one * two 
       return Math.round(out * 100) / 100; 
+    }, 
+        revtotal: function(data) {
+      // TODO
+     var sum = 0;
+     for(var i=0; i< data.length; i++) {
+     sum += data[i].quantity * data[i].productprice;
+     }
+     return Math.round(sum * 100) / 100; 
     }, 
     revtotal: function(data) {
       // TODO

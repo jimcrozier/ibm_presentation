@@ -20,11 +20,11 @@ exports.index = function(request, response) {
   response.redirect('/crud/shops');  
 };
 
-exports.list = function(request, response) {
-  db.Product.find().limit( 10 ).exec(function(err, results) {
+exports.list2 = function(request, response) {
+  db.Product.find({category:"OTHER"}).limit( 10 ).exec(function(err, results) {
     response.render("crud-shop/list", {
       title: 'List Products',
-      crud_product: results
+      crud_product2: results
     });
   });
 };
@@ -54,6 +54,7 @@ exports.create = function(request, response) {
       id: Math.floor(100000 + Math.random() * 900000).toString().substring(0, 4),
       productname: product.productname,
       password: product.password,
+      category: product.category,
       displayName: product.displayName,
       emails: [{ value: product.email }]
     });

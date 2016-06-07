@@ -66,6 +66,7 @@ var productsSchema = new Schema({
   productname: String,
   productprice: Number,
   displayName: String,
+  category:String,
   productsku: String
 }, {collection:'products'});
 
@@ -83,6 +84,7 @@ var products = exports.products = [
     productname: 'hammer', 
     productprice: '19.99', 
     displayName: 'Hammer', 
+    category: 'OTHER',
     productsku: '123456-1234'
   })]
 
@@ -119,6 +121,7 @@ var cartsSchema = new Schema({
   productname: String,
   productprice: Number,
   displayName: String,
+  category: String,
   quantity: Number
 }, {collection:'carts'});
 
@@ -139,6 +142,7 @@ var carts = exports.carts = [
     productname: 'hammer', 
     productprice: '19.99', 
     displayName: 'Hammer', 
+    category: 'OTHER',
     quantity: 2
   })]
 

@@ -28,30 +28,13 @@
 <section class="content">
 
 
-<p>  
-  <label>Mode:</label>
-  <select name="config[mode]">    
-    <option value=""></option>
-    <option value="live">Live</option>
-    <option value="test" selected="selected">Test</option>    
-  </select>
-</p>  
-<p>  
-  <label>Pair:</label>
-  <select name="config[pair]">      
-    <option value=""></option>      
-    <option value="ltc_btc" selected="selected">LTC / BTC</option>
-    <option value="nmc_btc">NMC / BTC</option>
-  </select>
-</p>
-
 <div class="thistest"></div>
   <div class="btn-group">
         <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
                  Choose Dept
             <span class="caret"></span>
         </a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" id ='ddmenu'>
             {{#each crud_cats }}
               <li><a href="#">{{this}}</a></li>
             {{/each}}           
@@ -77,20 +60,22 @@
           </div>
         </div>
         <!-- /.box-header -->
+
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover thistable">
             <tr>
               <th>ID</th>
               <th>Productname</th>
+              <th>Category</th>
               <th>Display Name</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Actions</th>
             </tr>
-            {{#each crud_product }}
+            {{#each crud_product2}}
             
               <tr>
-              <form action="{{{url 'cart.create'}}}" method="post"> 
+             
                 <td>
                   <a href="/crud/product/{{this.id}}">
                     {{this.id}}
@@ -101,9 +86,11 @@
                     {{this.productname}}
                   </a>
                 </td>
+                <td>{{this.category}}</td>
                 <td>{{this.displayName}}</td>
                  <td>{{this.productprice}}</td>
-                <td>          
+                <td>     
+                 <form action="{{{url 'cart.create'}}}" method="post">      
                 <input type="text" size = "3" class="form-control" name="quanity" placeholder="#" required/>
                 </td>
                 <td>
@@ -138,12 +125,84 @@
         }
       });
 
-$('.dropdown-menu li a').click(function() {
-    //alert($(this).text());
-    $('.thistest').text($(this).text());
+      function RefreshSomeEventListener() {
+    // Remove handler from existing elements
+    $("#wrapper .specific-selector").off(); 
+
+    // Re-add event handler for all matching elements
+    $("#wrapper .specific-selector").on("click", function() {
+        // Handle event.
+    });
+}
+
+$(document).ready(function() {
+    // Other ready commands / code
+
+    // Call our function to setup initial listening
+    RefreshSomeEventListener();
 });
 
-$('.thistest').text("asdf");
+$(document).ready(function() {
+function eatFood() {
+alert('Form has been submitted');
+};});
+
+$(function(){
+    $(document).on('click','.dropdown-menu li a', function(event) {
+    //alert($(this).text());
+    $('.thistest').text($(this).text());
+
+
+     $.ajax({
+      url: '/box',
+      type: 'get',
+      data: {"id" : $(this).text()},
+      dataType: 'json',
+      success: function (data) {
+       var data2 =JSON.stringify(data);
+       var data3 = JSON.parse(data2);
+       $('.thistable tbody').remove();
+       var trHTML = '<div class="box-body table-responsive no-padding">' +
+          '<table class="table table-hover thistable">' +
+            '<tr>' +
+              '<th>ID</th>' +
+              '<th>Productname</th>' +
+              '<th>Category</th>' +
+              '<th>Display Name</th>' +
+              '<th>Price</th>' +
+              '<th>Quantity</th>' +
+            '</tr>';
+            //$('#box').prepend(trHTML_first);
+          //var trHTML = '';
+
+        $.each(data3, function (i, item) {
+        //console.log(i);
+            trHTML += '<tr>' + 
+            '<td><a href="/crud/product/' +  item.id +  '">' +  item.id + '</a></td>' + 
+            '<td><a href="/crud/product/' +  item.id +  '">' +  item.productname + '</a></td>' + 
+            '<td>' +  item.category + '</td>' + 
+            '<td>' +  item.displayName + '</td>' +
+            '<td>' +  item.productprice + '</td>' + 
+            '<td><div><div class="input-group input-group-sm" style="width: 20px;"><form action="/crud/cart" method="post">  ' +
+            '<input type="text" size = "3" class="form-control pull-right" name="quanity" placeholder="#" required/>'  + 
+'<div class="pull-right"><button  type="submit" name = "id"  value = ' + item.id + ' class="btn btn-default search active" ><i class="fa fa-plus"></i> </button></div></div></div></td></form>' + 
+            '</tr>';
+        });
+        trHTML += '</table></div>';
+
+        console.log(trHTML);
+        $('.thistable').append(trHTML);
+        //$(".thistable tr:last").find("td:last").append(trHTML);
+         //return false;
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log('error', errorThrown);
+      }
+    });
+});});
+
+
+
 
     })(jQuery)
   </script>
