@@ -171,3 +171,55 @@ exports.findByCartname = function(cartname, cb) {
   }
   return cb(null, null);
 };
+
+
+
+// Invoices Model
+var invoicesSchema = new Schema({
+  id: Number,
+  dt: Date,
+  invoice_nbr: String,
+  customer: String,
+  dsc: String,
+  sku: String,
+  qnty:Number,
+  price:Number,
+  amt:Number,
+  salesdesc: String
+
+}, {collection:'invoices'});
+
+var Invoice = exports.Invoice = mongoose.model('Invoice', invoicesSchema);
+
+exports.getInvoices = function(cb) {
+  Invoice.find().exec(function(err, results) {
+    cb(err, results);
+  });
+};
+
+
+// add invoices from collection mongo
+this.getInvoices(function(err, results) {
+  if (err) throw err;
+  results.forEach(function(invoice) {
+    invoices.push(invoice);
+  });
+});
+
+exports.findById = function(id, cb) {
+  for (var i = 0, len = invoices.length; i < len; i++) {
+    if (invoices[i].id === id) {
+      return cb(null, invoices[i]);
+    }
+  }
+  return cb(new Error('Invoice ' + id + ' does not exist'));
+};
+
+exports.findByInvoicename = function(invoicename, cb) {
+  for (var i = 0, len = invoices.length; i < len; i++) {
+    if (invoices[i].invoicename === invoicename) {
+      return cb(null, invoices[i]);
+    }
+  }
+  return cb(null, null);
+};

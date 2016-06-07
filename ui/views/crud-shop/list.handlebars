@@ -183,9 +183,9 @@ $(function(){
             '<td>' +  item.category + '</td>' + 
             '<td>' +  item.displayName + '</td>' +
             '<td>' +  item.productprice + '</td>' + 
-            '<td><div><div class="input-group input-group-sm" style="width: 20px;"><form action="/crud/cart" method="post">  ' +
-            '<input type="text" size = "3" class="form-control pull-right" name="quanity" placeholder="#" required/>'  + 
-'<div class="pull-right"><button  type="submit" name = "id"  value = ' + item.id + ' class="btn btn-default search active" ><i class="fa fa-plus"></i> </button></div></div></div></td></form>' + 
+            '<td><div class="input-group input-group-sm" style="width: 50px;"><form action="/crud/cart" method="post">  ' +
+            '<span><input type="text" size = "3" class="form-control pull-left" name="quanity" placeholder="#" required/></span>'  + 
+'<span class="pull-right"><button  type="submit" name = "id"  value = ' + item.id + ' class="btn btn-default search active" ><i class="fa fa-plus"></i> </button></span></div></td></form>' + 
             '</tr>';
         });
         trHTML += '</table></div>';
