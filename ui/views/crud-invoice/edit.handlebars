@@ -1,0 +1,6 @@
+<h1>Edit crud_invoice</h1>
+<form action="/crud-invoice/crud-invoice/{{crud_invoice.id}}?_method=put" method="post">
+  <label for="name">Name: </label>
+  <input id="name" name="var_name[name]" value="{{crud_invoice.name}}" />
+  <input type="submit" value="Update" />
+</form>

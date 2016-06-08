@@ -68,6 +68,8 @@ app.use(function(req, res, next) {
   var msg = req.session.success;
   delete req.session.error;
   delete req.session.success;
+  console.log(req.session.user);
+  res.locals.currentuser = req.session.user;
   res.locals.message = '';
   if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
   if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
@@ -157,7 +159,7 @@ var Handlebars = exphbs.create({
       out = one * two 
       return Math.round(out * 100) / 100; 
     }, 
-        revtotal: function(data) {
+    revtotal: function(data) {
       // TODO
      var sum = 0;
      for(var i=0; i< data.length; i++) {

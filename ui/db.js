@@ -177,15 +177,15 @@ exports.findByCartname = function(cartname, cb) {
 // Invoices Model
 var invoicesSchema = new Schema({
   id: Number,
-  dt: Date,
+  dt: String,
   invoice_nbr: String,
   customer: String,
-  dsc: String,
+  desc: String,
   sku: String,
   qnty:Number,
   price:Number,
   amt:Number,
-  salesdesc: String
+  saledesc: String
 
 }, {collection:'invoices'});
 
@@ -197,6 +197,21 @@ exports.getInvoices = function(cb) {
   });
 };
 
+
+
+var invoices = exports.invoices = [
+  new Invoice({ 
+   id: 1,
+  dt: "2015-08-28",
+  invoice_nbr: "35B-1440795424",
+  customer: "String",
+  desc: "String",
+  sku: "String",
+  qnty:10,
+  price:10,
+  amt:100,
+  saledesc: "String"
+  })]
 
 // add invoices from collection mongo
 this.getInvoices(function(err, results) {
@@ -223,3 +238,4 @@ exports.findByInvoicename = function(invoicename, cb) {
   }
   return cb(null, null);
 };
+

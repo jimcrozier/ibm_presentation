@@ -75,12 +75,11 @@ Auth.load = function(parentApp) {
           req.session.success = 'Authenticated as ' + user.displayName
             + ' click to <a href="/logout">logout</a>. '
             + ' You may now access <a href="' + parentApp.locals.url('dashboard.v1') + '">' + parentApp.locals.url('dashboard.v1') + '</a>.';
-          res.redirect('/login');
+          res.redirect('/dashboard/v1');
         });
       } else {
         req.session.error = 'Authentication failed, please check your '
-          + ' username and password.'
-          + ' (use "admin" and "admin")';
+          + ' username and password.';
         res.redirect('/login');
       }
     });

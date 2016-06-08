@@ -1,0 +1,118 @@
+{{#extend 'styles'}}
+  <style>
+    .error {
+      color: red;
+    }
+    .success {
+      color:green;
+    }
+  </style>
+{{/extend}}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    List Invoices
+    <small>All invoices listed</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="{{{url 'dashboard.v1'}}}"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">List</li>
+  </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      {{#if message}}
+        {{{message}}}
+      {{/if}}
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">All invoices</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" id="table-search" class="form-control pull-right" placeholder="Search">
+
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default search"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <tr>
+              <th>Date</th>
+              <th>Invoice#</th>
+              <th>Custmer</th>
+              <th>Desc</th>
+              <th>SKU</th>
+              <th>Qnty</th>
+              <th>Price</th>
+              <th>Amt</th>
+              <th>SalesDesc</th>
+            </tr>
+            {{#each crud_invoice }}
+              <tr>
+                <td>
+                  <a href="/crud/invoice/{{this.dt}}">
+                    {{this.dt}}
+                  </a>
+                </td>
+                <td>
+                  <a href="/crud/invoice/{{this.invoice_nbr}}">
+                    {{this.invoice_nbr}}
+                  </a>
+                </td>
+                <td>{{this.customer}}</td>
+                <td>{{this.desc}}</td>
+                <td>{{this.sku}}</td>
+                <td>{{this.qnty}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.amt}}</td>
+                <td>{{this.saledesc}}</td>
+               <!-- <td>
+                  <a href="/crud/invoice/{{this.id}}" class="btn btn-xs btn-info">
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                    Show
+                  </a>
+                  <a href="/crud/invoice/{{this.id}}/edit" class="btn btn-xs btn-success">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Edit
+                  </a>
+                  <a href="#" class="btn btn-xs btn-danger" data-href="/crud/invoice/{{this.id}}?_method=delete">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Delete
+                  </a>
+                </td>-->
+              </tr>
+            {{/each}}
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.section -->
+{{#extend 'scripts'}}
+  <script>
+    (function($) {
+      // Delete invoice button
+      $('.btn-danger').click(function(event) {
+        event.preventDefault();
+
+        var uri = $(this).attr('data-href');
+        
+        if (confirm('¿Desea eliminar el usuario?')) {
+          $.post(uri, function(response) {
+            window.location.href = '/crud/invoices';
+          });
+        }
+      });
+    })(jQuery)
+  </script>
+{{/extend}}
