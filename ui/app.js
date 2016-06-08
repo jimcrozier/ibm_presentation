@@ -68,7 +68,6 @@ app.use(function(req, res, next) {
   var msg = req.session.success;
   delete req.session.error;
   delete req.session.success;
-  console.log(req.session.user);
   res.locals.currentuser = req.session.user;
   res.locals.message = '';
   if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
