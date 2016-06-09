@@ -158,6 +158,15 @@ app.get('/invoicesum/list2', function(request, response, next) {
 }
 });
 
+app.get('/cart/list2', function(request, response, next) {
+  var currentuser = request.session.user;
+  db.Cart.find({customer:currentuser['displayName']}).exec(function(err, results) {
+    response.render("crud-cart/list", {
+      title: 'List Carts',
+      crud_cart: results
+    });
+  });
+});
 // MVC Autoloader
 Autoloader.load(app, {verbose: !module.parent});
 
@@ -190,14 +199,14 @@ var Handlebars = exphbs.create({
       out = one * two 
       return Math.round(out * 100) / 100; 
     }, 
-    revtotal: function(data) {
+    //countcart: function() {
       // TODO
-     var sum = 0;
-     for(var i=0; i< data.length; i++) {
-     sum += data[i].quantity * data[i].productprice;
-     }
-     return Math.round(sum * 100) / 100; 
-    }, 
+     //var sum = 0;
+     //for(var i=0; i< data.length; i++) {
+     //sum += data[i].quantity * data[i].productprice;
+     //}
+     //return Math.round(10 * 100) / 100; 
+    //}, 
     revtotal: function(data) {
       // TODO
      var sum = 0;
@@ -224,6 +233,19 @@ var Handlebars = exphbs.create({
      tax = sum*0.08; 
      sum = sum + tax ; 
      return Math.round(sum * 100) / 100; 
+    }, 
+    countcart: function() {
+      // TODO
+      var cartcount;
+    db.Cart.find().count().exec(function(err, results) {
+      //console.log("asdfasdf" + results);
+       cartcount = results;
+      //return cartcount; 
+    //return results;
+    });
+    console.log(cartcount);
+    return cartcount;
+    
     }, 
     extend: function(name, context) {
       var block = blocks[name];

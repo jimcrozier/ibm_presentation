@@ -118,6 +118,7 @@ exports.findByProductname = function(productname, cb) {
 // Carts Model
 var cartsSchema = new Schema({
   id: Number,
+  customer:String,
   productname: String,
   productprice: Number,
   displayName: String,
@@ -139,6 +140,7 @@ exports.getCarts = function(cb) {
 var carts = exports.carts = [
   new Cart({ 
     id: 1, 
+    customer: 'admin',
     productname: 'hammer', 
     productprice: '19.99', 
     displayName: 'Hammer', 

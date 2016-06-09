@@ -185,6 +185,7 @@ $(function(){
             '<td>' +  item.productprice + '</td>' + 
             '<td><div class="input-group input-group-sm" style="width: 50px;"><form action="/crud/cart" method="post">  ' +
             '<span><input type="text" size = "3" class="form-control pull-left" name="quanity" placeholder="#" required/></span>'  + 
+            '<span><input type="hidden" value="{{currentuser.displayName}}" name="customer"></span>' + 
 '<span class="pull-right"><button  type="submit" name = "id"  value = ' + item.id + ' class="btn btn-default search active" ><i class="fa fa-plus"></i> </button></span></div></td></form>' + 
             '</tr>';
         });

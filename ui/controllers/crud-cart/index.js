@@ -49,7 +49,8 @@ exports.create = function(request, response) {
   //var id = 17697;
   var id = request.body.id;
   var qnty = request.body.quanity;
-  console.log(qnty);
+  var customer = request.body.customer;
+  console.log(customer);
   //var id = "17697";
   
   if (!id) return next();
@@ -59,6 +60,7 @@ exports.create = function(request, response) {
     console.log(qnty);
     var Cart = new db.Cart({
       id: cart.id,
+      customer: customer,
       productname: cart.productname,
       productprice: cart.productprice,
       displayName: cart.displayName,
