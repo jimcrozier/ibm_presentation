@@ -110,15 +110,15 @@ app.post('/register', function(req, res) {
   }
 });
 
-app.get('/mysqltest', function (req, res) {
-    mysqlconn.query("select concat(year(dt),' Q', quarter(dt)) as y, sum(rev) as rev from anchor.cust_purchases group by year(dt), quarter(dt) order by year(dt), quarter(dt)", req.body, 
-            function (err, result) {
-                        if (err) throw err;
-                        res.send(result);
-                                            }
-                                                );
-                                                });
-
+//app.get('/mysqltest', function (req, res) {
+//    mysqlconn.query("select concat(year(dt),' Q', quarter(dt)) as y, sum(rev) as rev from anchor.cust_purchases group by year(dt), quarter(dt) order by year(dt), quarter(dt)", req.body, 
+//            function (err, result) {
+//                        if (err) throw err;
+//                        res.send(result);
+//                                            }
+//                                                );
+//                                                });
+//
 
 app.get('/box', function(req, res) {
   var cat = req.query.id; 
