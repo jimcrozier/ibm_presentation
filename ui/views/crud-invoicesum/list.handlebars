@@ -46,32 +46,22 @@
               <th>Date</th>
               <th>Invoice#</th>
               <th>Custmer</th>
-              <th>Desc</th>
-              <th>SKU</th>
-              <th>Qnty</th>
-              <th>Price</th>
               <th>Amt</th>
-              <th>SalesDesc</th>
             </tr>
-            {{#each crud_invoice }}
+            {{#each crud_invoicesum }}
               <tr>
                 <td>
-             
+  
                     {{this.dt}}
-          
+        
                 </td>
                 <td>
-            
+                  <a href="/test/{{this.invoice_nbr}}">
                     {{this.invoice_nbr}}
-              
+                  </a>
                 </td>
                 <td>{{this.customer}}</td>
-                <td>{{this.desc}}</td>
-                <td>{{this.sku}}</td>
-                <td>{{this.qnty}}</td>
-                <td>{{this.price}}</td>
                 <td>{{this.amt}}</td>
-                <td>{{this.saledesc}}</td>
                <!-- <td>
                   <a href="/crud/invoice/{{this.id}}" class="btn btn-xs btn-info">
                     <i class="glyphicon glyphicon-eye-open"></i>

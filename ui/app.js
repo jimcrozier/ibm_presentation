@@ -126,6 +126,38 @@ app.get('/box', function(req, res) {
  res.send(results);
   });
 });
+
+
+app.get('/test/:invoice_nbr', function(request, response, next) {
+  console.log(request.session.user);
+  var invoice_nbr = request.params.invoice_nbr;
+  db.Invoice.find({invoice_nbr:invoice_nbr}).exec(function(err, results) {
+    response.render("crud-invoice/list", {
+      title: 'List Invoices',
+      crud_invoice: results
+    });
+  });
+}); 
+
+app.get('/invoicesum/list2', function(request, response, next) {
+  var currentuser = request.session.user;
+  if (currentuser['username'] == 'admin'){
+  db.Invoicesum.find().exec(function(err, results) {
+    response.render("crud-invoicesum/list", {
+      title: 'List Invoicesums',
+      crud_invoicesum: results
+    });
+  });
+} else {
+  db.Invoicesum.find({customer:currentuser['displayName']}).exec(function(err, results) {
+    response.render("crud-invoicesum/list", {
+      title: 'List Invoicesums',
+      crud_invoicesum: results
+    });
+  });
+}
+});
+
 // MVC Autoloader
 Autoloader.load(app, {verbose: !module.parent});
 

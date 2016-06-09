@@ -223,7 +223,7 @@ this.getInvoices(function(err, results) {
 
 exports.findById = function(id, cb) {
   for (var i = 0, len = invoices.length; i < len; i++) {
-    if (invoices[i].id === id) {
+    if (invoices[i].invoice_nbr === invoice_nbr) {
       return cb(null, invoices[i]);
     }
   }
@@ -232,10 +232,66 @@ exports.findById = function(id, cb) {
 
 exports.findByInvoicename = function(invoicename, cb) {
   for (var i = 0, len = invoices.length; i < len; i++) {
-    if (invoices[i].invoicename === invoicename) {
+    if (invoices[i].invoice_nbr === invoice_nbr) {
       return cb(null, invoices[i]);
     }
   }
   return cb(null, null);
 };
+
+// Invoicesums Model
+var invoicesumsSchema = new Schema({
+  id: Number,
+  dt: String,
+  invoice_nbr: String,
+  customer: String,
+  amt:Number
+
+}, {collection:'invoicesums'});
+
+var Invoicesum = exports.Invoicesum = mongoose.model('Invoicesum', invoicesumsSchema);
+
+exports.getInvoicesums = function(cb) {
+  Invoicesum.find().exec(function(err, results) {
+    cb(err, results);
+  });
+};
+
+
+
+var invoicesums = exports.invoicesums = [
+  new Invoicesum({ 
+   id: 1,
+  dt: "2015-08-28",
+  invoice_nbr: "35B-1440795424",
+  customer: "String",
+  amt:100
+  })]
+
+// add invoicesums from collection mongo
+this.getInvoicesums(function(err, results) {
+  if (err) throw err;
+  results.forEach(function(invoicesum) {
+    invoicesums.push(invoicesum);
+  });
+});
+
+exports.findById = function(id, cb) {
+  for (var i = 0, len = invoicesums.length; i < len; i++) {
+    if (invoicesums[i].id === id) {
+      return cb(null, invoicesums[i]);
+    }
+  }
+  return cb(new Error('Invoicesum ' + id + ' does not exist'));
+};
+
+exports.findByInvoicesumname = function(invoicesumname, cb) {
+  for (var i = 0, len = invoicesums.length; i < len; i++) {
+    if (invoicesums[i].invoicesumname === invoicesumname) {
+      return cb(null, invoicesums[i]);
+    }
+  }
+  return cb(null, null);
+};
+
 

@@ -43,13 +43,13 @@
 
                                                                                                                                 -->
                                                                                                                                             </li>
-                                                                                                                                         
+    <!--                                                                                                                                       
 <li class="treeview {{{activeRoutes 'dashboard.index,dashboard.v1,dashboard.v2'}}}">                                                                                                                                      
  <!--            <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-  -->              <li class="{{{activeRoute 'dashboard.v1'}}}">
+                <li class="{{{activeRoute 'dashboard.v1'}}}">
                   <a href="{{{url 'dashboard.v1'}}}"><i class="fa fa-circle-o"></i> Dashboard v1</a>
                 </li>
     <!--            <li class="{{{activeRoute 'dashboard.v2'}}}">
@@ -191,9 +191,10 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-      -->          <li class="{{{activeRoute 'examples.invoice'}}}">
-                  <a href="{{{url 'examples.invoice'}}}"><i class="fa fa-circle-o"></i> Invoice</a>
-                </li>
+      -->          
+            <li class="treeview {{{activeRoutes 'cart.list,cart.show,cart.edit,cart.new'}}}">
+                 <a href="/invoicesum/list2"><i class="fa fa-file-text-o"></i> Invoices</a>
+            </li>
       <!--          <li class="{{{activeRoute 'user.profile'}}}">
                   <a href="{{{url 'user.profile'}}}"><i class="fa fa-circle-o"></i> Profile</a>
                 </li>

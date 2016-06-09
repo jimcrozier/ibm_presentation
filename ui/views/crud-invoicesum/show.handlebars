@@ -1,0 +1,13 @@
+<h1>{{crud_invoicesum.name}} 
+  <a href="/crud-invoicesum/crud-invoicesum/{{crud_invoicesum.id}}/edit">Edit</a> 
+</h1>
+
+<p><b>Name: </b>{{crud_invoicesum.name}}</p>
+
+{{#if hasMessages}}
+  <ul id="messages">
+    {{#each msg in messages}}
+      <li>{{msg}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
