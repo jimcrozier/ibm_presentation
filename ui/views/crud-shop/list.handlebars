@@ -72,7 +72,7 @@
               <th>Quantity</th>
               <th>Actions</th>
             </tr>
-            {{#each crud_product2}}
+            {{#each testthis}}
             
               <tr>
              
@@ -94,7 +94,7 @@
                 <input type="text" size = "3" class="form-control" name="quanity" placeholder="#" required/>
                 </td>
                 <td>
-                <button type="submit" name = "id" value = {{this.id}} class="btn-link">Add to Cart</button>
+                <button type="submit" name = "productprice" value = {{this.productprice}} class="btn-link">Add to Cart</button>
                 </td>
                  </form>
               </tr>
@@ -184,9 +184,9 @@ $(function(){
             '<td>' +  item.displayName + '</td>' +
             '<td>' +  item.productprice + '</td>' + 
             '<td><div class="input-group input-group-sm" style="width: 50px;"><form action="/crud/cart" method="post">  ' +
-            '<span><input type="text" size = "3" class="form-control pull-left" name="quanity" placeholder="#" required/></span>'  + 
+            '<span><input type="text" size = "3" class="form-control pull-left" name="quantity" placeholder="#" required/></span>'  + 
             '<span><input type="hidden" value="{{currentuser.displayName}}" name="customer"></span>' + 
-'<span class="pull-right"><button  type="submit" name = "id"  value = ' + item.id + ' class="btn btn-default search active" ><i class="fa fa-plus"></i> </button></span></div></td></form>' + 
+'<span class="pull-right"><button  type="submit" name = "productsku"  value = ' + item.productsku + ' class="btn-link active" ><i class="fa fa-plus"></i> </button></span></div></td></form>' + 
             '</tr>';
         });
         trHTML += '</table></div>';

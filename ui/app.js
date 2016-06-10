@@ -129,7 +129,6 @@ app.get('/box', function(req, res) {
 
 
 app.get('/test/:invoice_nbr', function(request, response, next) {
-  console.log(request.session.user);
   var invoice_nbr = request.params.invoice_nbr;
   db.Invoice.find({invoice_nbr:invoice_nbr}).exec(function(err, results) {
     response.render("crud-invoice/list", {
@@ -199,6 +198,15 @@ var Handlebars = exphbs.create({
       out = one * two 
       return Math.round(out * 100) / 100; 
     }, 
+//    testhis: function() {
+//      // TODO
+// db.Product.find({category:"OTHER"}).limit( 10 ).exec(function(err, results) {
+//    response.render("crud-shop/list", {
+//      title: 'List Products',
+//      return results;
+//    });
+//  });
+//    }, 
     //countcart: function() {
       // TODO
      //var sum = 0;

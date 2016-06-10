@@ -47,15 +47,18 @@ exports.create = function(request, response) {
   //var cart = request.body.cart;
   
   //var id = 17697;
-  var id = request.body.id;
-  var qnty = request.body.quanity;
+  var productsku = request.body.productsku;
+  console.log("productsku" + productsku);
+  var qnty = request.body.quantity;
   var customer = request.body.customer;
-  console.log(customer);
+
+  console.log("qnty:"+request.body);
+  //console.log(customer);
   //var id = "17697";
   
-  if (!id) return next();
-  db.Product.findOne({id:id}, function(err, cart) {
-    
+  if (!productsku) return next();
+  db.Product.findOne({productsku:productsku}, function(err, cart) {
+    console.log(cart);
   if (cart) {
     console.log(qnty);
     var Cart = new db.Cart({
@@ -74,11 +77,13 @@ exports.create = function(request, response) {
         reponse.redirect('back');
       }
       
-      request.session.success = 'Cart created succesfuly!';
-          response.redirect('/crud/shops');
+       request.session.success = "Item added to <a href = '/crud/carts'> Cart </a>";
+          response.redirect('back');
     });
   } else {
-    response.redirect('/crud/shop');
+    request.session.error = "Product no longer exist as listed. Please search product <a href = '/crud/shops'> Shop </a> for a replacement."
+    response.redirect('back');
+
   }
 
 
